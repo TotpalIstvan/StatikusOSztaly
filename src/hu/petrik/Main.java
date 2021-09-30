@@ -31,5 +31,8 @@ public class Main {
             System.out.println(Veletlen.velTeljesnev());
         }
         System.out.println();
+
+        //befejezeni házi
+        //Szorgalmi 3.név
     }
 }
