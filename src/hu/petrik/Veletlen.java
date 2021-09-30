@@ -11,8 +11,8 @@ import java.util.List;
 public final class Veletlen {
     private static Random random = new Random();
     private static List<String> vezetekNevek = feltolt("files/veznev.txt");
-    private static List<String> ferfiNevek = feltolt("files/ferfikernev.txt");
-    private static List<String> noiNevek = feltolt("files/noikernev.txt");
+    private static List<String> ferfiKerNevek = feltolt("files/ferfikernev.txt");
+    private static List<String> noiKerNevek = feltolt("files/noikernev.txt");
 
     private Veletlen() {}
 
@@ -28,5 +28,43 @@ public final class Veletlen {
         return fajlSorai;
     }
 
+
+
+    public static int velEgesz(int min, int max) {
+        return random.nextInt(max-min+1)+min;
+    }
+
+    public static char velKarakter(char min, char max) {
+        return (char)velEgesz(min, max);
+    }
+
+    public static String velVezeteknev() {
+        return vezetekNevek.get(random.nextInt(vezetekNevek.size()));
+        //return vezetekNevek.get(velEgesz(0,vezetekNevek.size()+1));
+    }
+
+
+
+    public static String velKeresztnev(boolean nem) {
+        String keresztNev = "";
+        if (nem){
+           keresztNev = ferfiKerNevek.get(random.nextInt(ferfiKerNevek.size()));
+        }else {
+            keresztNev = noiKerNevek.get(random.nextInt(noiKerNevek.size()));
+        }
+        return keresztNev;
+    }
+
+    public static String velKeresztnev() {
+        return velKeresztnev(random.nextBoolean());
+    }
+
+    public static String velTeljesnev(boolean nem) {
+        return String.format("%s %s", velVezeteknev(), velKeresztnev(nem));
+    }
+
+    public static String velTeljesnev() {
+        return velTeljesnev(random.nextBoolean());
+    }
 
 }
